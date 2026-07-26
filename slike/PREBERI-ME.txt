@@ -1,0 +1,30 @@
+SLIKE ZA SPLETNO STRAN
+======================
+
+Slike so ŽE VSTAVLJENE (začasne, nizke kvalitete). Ko dobite boljše,
+jih preprosto shranite z ISTIM imenom in prepišejo obstoječe –
+v HTML ni treba nič spreminjati.
+
+Ime datoteke mora biti NATANKO tako, kot je zapisano
+(male črke, brez šumnikov, končnica .jpg).
+
+  naslovna.jpg    – glavna slika na vstopni strani (pokončna, npr. 900 x 1200)
+  o-meni.jpg      – portret Mariane (pokončna, npr. 900 x 1200)
+  salon.jpg       – notranjost salona (ležeča, npr. 1200 x 750)
+  strizenje.jpg   – striženje / barvanje (pokončna, npr. 900 x 1200)
+  masaza.jpg      – masaza lasisca in glave (pokončna, npr. 900 x 1200)
+  svetovanje.jpg  – posvet / detajl (pokončna, npr. 900 x 1200)
+  galerija-1.jpg  – utrinek 1 (kvadratna, npr. 800 x 800)
+  galerija-2.jpg  – utrinek 2 (kvadratna, npr. 800 x 800)
+  galerija-3.jpg  – utrinek 3 (kvadratna, npr. 800 x 800)
+  og-slika.jpg    – slika za predogled pri deljenju na Facebooku (1200 x 630)
+
+OPOMBA: slika striženja je trenutno strizenje.GIF (edini posnetek iz salona).
+Če boste poslali strizenje.jpg, v datoteki storitve.html popravite
+"slike/strizenje.gif" v "slike/strizenje.jpg".
+
+NASVET: preden slike naložite, jih pomanjšajte na največ ~1600 px po daljši
+stranici in shranite v kakovosti okoli 80 %. Tako se stran naloži hitro.
+
+Če katere slike (za)manjka, se na njenem mestu prikaže okvir z imenom
+datoteke – da se takoj vidi, katera slika manjka.
