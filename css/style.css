@@ -647,6 +647,38 @@ body.nav-open { overflow: hidden; }
   font-style: normal; font-size: 12px; font-weight: 600;
   text-transform: uppercase; letter-spacing: 1.4px; color: var(--brand);
 }
+.section--dark .price-list em { color: var(--brand-light); }
+
+/* --- cenik: prava številčna cena namesto »po dogovoru« --- */
+.price-list--cenik li { padding: 12px 0; gap: 12px; }
+.price-list--cenik li:last-child { border-bottom: none; }
+.price-list--cenik b { font-weight: 500; }
+.price-list--cenik em {
+  font-size: 16px; font-weight: 600;
+  text-transform: none; letter-spacing: 0; white-space: nowrap;
+}
+.price-list--cenik .dur {
+  font-style: normal; font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--muted-on-light); white-space: nowrap;
+}
+.section--dark .price-list--cenik .dur { color: var(--muted-on-dark); }
+
+/* skupine cenika */
+.cenik-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(30px, 3.4vw, 56px); }
+.cenik-group { min-width: 0; }
+.cenik-group > h3 {
+  font-size: clamp(20px, 1.9vw, 26px); margin-bottom: 6px;
+}
+.cenik-group__note {
+  font-size: 13px; margin: 0 0 14px;
+}
+.cenik-foot {
+  margin-top: clamp(34px, 4vw, 56px);
+  padding-top: 26px; border-top: 1px dashed var(--line-light);
+  font-size: 14px;
+}
+.section--dark .cenik-foot { border-top-color: var(--line-dark); }
 
 /* števci */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -859,6 +891,7 @@ body.nav-open { overflow: hidden; }
   .nav, .header-phone { display: none; }
   .burger { display: flex; }
   .split, .grid--2 { grid-template-columns: 1fr; }
+  .cenik-grid { grid-template-columns: 1fr; }
   .split--reverse .split__media { order: 0; }
   .hero { min-height: auto; padding-top: calc(var(--header-h) + 60px); }
   .scroll-hint { display: none; }
