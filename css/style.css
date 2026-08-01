@@ -1,61 +1,42 @@
-/* =====================================================================
-   SVETLANA — frizerski salon, Mariana Kondryn s.p.
-   Glavna CSS tema.  Vse barve so zbrane spodaj v :root —
-   če želite karkoli spremeniti, spremenite samo to eno mesto.
-   ===================================================================== */
-
 :root {
 
-  /* --- BLAGOVNA BARVA (želja stranke) ---------------------------- */
-  --brand:        #26867c;   /* osnovna barva salona                 */
-  --brand-dark:   #1e6e66;   /* temnejša – gumbi, hover              */
-  --brand-deep:   #123f3a;   /* najtemnejša – ozadja, sence          */
-  --brand-light:  #5fb8ad;   /* svetlejša – povezave na temnem       */
-  --brand-pale:   #a9dbd4;   /* zelo svetla – drobni poudarki        */
-
-  /* --- KOMPLEMENTARNA TOPLA BARVA (peščena, umirja zeleno) ------- */
+  --brand:        #26867c;
+  --brand-dark:   #1e6e66;
+  --brand-deep:   #123f3a;
+  --brand-light:  #5fb8ad;
+  --brand-pale:   #a9dbd4;
   --sand:         #dcc3a0;
   --sand-soft:    #f0e6d8;
 
-  /* --- NEVTRALNE (namesto črne: temna z rahlim zelenim pridihom) -- */
-  --ink:          #0f1e1c;   /* glavno temno ozadje                  */
-  --ink-2:        #142825;   /* izmenično temno ozadje               */
-  --ink-3:        #1c3330;   /* kartice na temnem                    */
-  --cream:        #f7f4ef;   /* svetlo ozadje                        */
-  --cream-2:      #efeae1;   /* svetlo ozadje, izmenično            */
+  --ink:          #0f1e1c;
+  --ink-2:        #142825;
+  --ink-3:        #1c3330;
+  --cream:        #f7f4ef;
+  --cream-2:      #efeae1;
   --white:        #ffffff;
 
-  /* --- BESEDILO --------------------------------------------------- */
   --text-on-dark:  #e9f1ef;
   --muted-on-dark: #9fb6b2;
   --text-on-light: #21332f;
   --muted-on-light:#5b706c;
 
-  /* --- ČRTE IN SENCE --------------------------------------------- */
   --line-dark:  rgba(255, 255, 255, .12);
   --line-light: rgba(18, 63, 58, .14);
   --shadow-sm:  0 6px 24px rgba(9, 30, 28, .10);
   --shadow-md:  0 18px 50px rgba(9, 30, 28, .16);
   --shadow-lg:  0 30px 80px rgba(9, 30, 28, .28);
 
-  /* --- TIPOGRAFIJA ------------------------------------------------ */
   --font-title: "Cormorant", "Times New Roman", serif;
   --font-body:  "Lato", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 
-  /* --- POSTAVITEV ------------------------------------------------- */
   --container: 1340px;
   --pad-x: clamp(20px, 5vw, 60px);
   --section-y: clamp(72px, 9vw, 140px);
   --header-h: 92px;
 
-  /* --- ANIMACIJE -------------------------------------------------- */
   --ease: cubic-bezier(.22, .61, .36, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
 }
-
-/* =====================================================================
-   1. OSNOVE
-   ===================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -114,10 +95,6 @@ p:last-child { margin-bottom: 0; }
 }
 .skip-link:focus { left: 0; }
 
-/* =====================================================================
-   2. POMOŽNI RAZREDI
-   ===================================================================== */
-
 .container {
   width: 100%;
   max-width: var(--container);
@@ -129,8 +106,6 @@ p:last-child { margin-bottom: 0; }
 .section {
   padding-block: var(--section-y);
   position: relative;
-  /* režemo SAMO vodoravno (okrasni okvir ne sme raztegniti strani),
-     navpično ostane vidno, da krog nad/pod besedo ni odsekan */
   overflow-x: clip;
   overflow-y: visible;
 }
@@ -146,7 +121,6 @@ p:last-child { margin-bottom: 0; }
 
 .section--light .lead, .section--light2 .lead { color: var(--muted-on-light); }
 
-/* nadnaslov – majhne razmaknjene velike črke */
 .eyebrow {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-body);
@@ -173,13 +147,11 @@ p:last-child { margin-bottom: 0; }
 
 .stack > * + * { margin-top: 22px; }
 
-/* --- označen (obkrožen) del naslova – kot v izvorni temi ---------- */
 .mark {
   position: relative;
   display: inline-block;
   white-space: nowrap;
-  margin-inline: .14em;   /* prostor za narisan krog */
-  color: var(--brand-light);
+  margin-inline: .14em;  color: var(--brand-light);
   font-style: italic;
 }
 .section--light .mark, .section--light2 .mark { color: var(--brand); }
@@ -187,9 +159,7 @@ p:last-child { margin-bottom: 0; }
 .mark svg {
   position: absolute;
   left: -9%; top: 50%;
-  width: 118%; height: 152%;   /* večji obroč – manj sega čez črke */
-  /* --m-* nastavi main.js, da je vsak krog malenkost drugačen */
-  transform:
+  width: 118%; height: 152%;  transform:
     translateY(-50%)
     rotate(var(--m-rot, 0deg))
     scale(var(--m-sx, 1), var(--m-sy, 1));
@@ -208,10 +178,6 @@ p:last-child { margin-bottom: 0; }
 
 @keyframes draw-circle { to { stroke-dashoffset: 0; } }
 @keyframes line-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
-/* =====================================================================
-   3. GUMBI
-   ===================================================================== */
 
 .btn {
   --btn-bg: var(--brand-dark);
@@ -254,7 +220,6 @@ p:last-child { margin-bottom: 0; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
-/* besedilna povezava s puščico */
 .link-arrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
@@ -263,10 +228,6 @@ p:last-child { margin-bottom: 0; }
 .section--dark .link-arrow, .hero .link-arrow { color: var(--brand-light); }
 .link-arrow svg { transition: transform .35s var(--ease); }
 .link-arrow:hover svg { transform: translateX(6px); }
-
-/* =====================================================================
-   4. GLAVA / NAVIGACIJA
-   ===================================================================== */
 
 .progress {
   position: fixed; top: 0; left: 0; z-index: 120;
@@ -277,7 +238,7 @@ p:last-child { margin-bottom: 0; }
 
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: var(--header-h);
+  min-height: var(--header-h);
   display: flex; align-items: center;
   background: transparent;
   transition: background .45s var(--ease), height .45s var(--ease),
@@ -289,7 +250,7 @@ p:last-child { margin-bottom: 0; }
   transition: opacity .45s var(--ease);
 }
 .site-header.is-stuck {
-  height: 74px;
+  min-height: 74px;
   background: rgba(15, 30, 28, .86);
   backdrop-filter: blur(14px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, .25);
@@ -297,10 +258,10 @@ p:last-child { margin-bottom: 0; }
 .site-header.is-stuck::after { opacity: 1; }
 
 .site-header .container {
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; padding-block: .5rem;
 }
 
-/* logotip */
 .brand { display: inline-flex; align-items: center; gap: 14px; color: #fff; }
 .brand:hover { color: #fff; }
 .brand__mark {
@@ -322,7 +283,6 @@ p:last-child { margin-bottom: 0; }
   letter-spacing: 2.6px; color: var(--brand-light);
 }
 
-/* meni */
 .nav { display: flex; align-items: center; gap: 34px; }
 .nav a {
   position: relative;
@@ -339,7 +299,7 @@ p:last-child { margin-bottom: 0; }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 .nav a[aria-current="page"] { color: var(--brand-light); }
 
-.header-actions { display: flex; align-items: center; gap: 18px; }
+.header-actions { display: flex; align-items: center; gap: 18px; flex: none; margin-left: auto; }
 .header-phone {
   display: inline-flex; align-items: center; gap: 9px;
   font-size: 13px; font-weight: 600; letter-spacing: .6px; color: #fff;
@@ -347,37 +307,42 @@ p:last-child { margin-bottom: 0; }
 .header-phone:hover { color: var(--brand-light); }
 .header-phone svg { color: var(--brand-light); }
 
-/* hamburger */
 .burger {
   display: none;
-  width: 46px; height: 46px;
-  background: none; border: 1px solid var(--line-dark);
+  align-items: center; gap: .55em;
+  min-height: 2.9em; padding: .5em .9em;
+  background: none; border: 1px solid var(--brand-light);
   color: #fff; cursor: pointer;
-  flex-direction: column; align-items: center; justify-content: center;
+  font: inherit; font-size: 1rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
 }
-.burger span {
-  display: block; width: 20px; height: 1.5px; background: currentColor;
+.burger__label { white-space: nowrap; }
+.burger__icon {
+  display: flex; flex-direction: column; justify-content: center;
+  gap: .28em; flex: none;
+}
+.burger__icon span {
+  display: block; width: 1.35em; height: 2px; background: currentColor;
   transition: transform .35s var(--ease), opacity .25s var(--ease);
 }
-.burger span + span { margin-top: 5px; }
-.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.burger[aria-expanded="true"] .burger__icon span:nth-child(1) { transform: translateY(.42em) rotate(45deg); }
+.burger[aria-expanded="true"] .burger__icon span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] .burger__icon span:nth-child(3) { transform: translateY(-.42em) rotate(-45deg); }
 
-/* mobilni meni */
 .mobile-nav {
   position: fixed; inset: 0; z-index: 99;
   background: var(--ink);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: var(--header-h) var(--pad-x) 40px;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  padding: calc(var(--header-h) + 1rem) var(--pad-x) 3rem;
   clip-path: circle(0% at 100% 0);
   transition: clip-path .7s var(--ease-out);
   visibility: hidden;
+  overflow-y: auto; overscroll-behavior: contain;
 }
 .mobile-nav.is-open { clip-path: circle(150% at 100% 0); visibility: visible; }
 .mobile-nav a {
-  font-family: var(--font-title); font-size: 40px; color: #fff;
-  padding: 12px 0; border-bottom: 1px solid var(--line-dark);
+  font-family: var(--font-title); font-size: clamp(1.5rem, 7vw, 2.5rem); color: #fff;
+  padding: .45em 0; border-bottom: 1px solid var(--line-dark);
   opacity: 0; transform: translateY(24px);
 }
 .mobile-nav.is-open a { animation: m-in .5s var(--ease-out) forwards; }
@@ -391,10 +356,6 @@ p:last-child { margin-bottom: 0; }
 
 body.nav-open { overflow: hidden; }
 
-/* =====================================================================
-   5. HERO
-   ===================================================================== */
-
 .hero {
   position: relative;
   min-height: 100svh;
@@ -406,7 +367,6 @@ body.nav-open { overflow: hidden; }
 }
 .hero--page { min-height: 62svh; }
 
-/* mehki svetlobni krogi v ozadju */
 .hero__glow {
   position: absolute; border-radius: 50%;
   filter: blur(90px); opacity: .5; pointer-events: none;
@@ -451,7 +411,6 @@ body.nav-open { overflow: hidden; }
   content: ""; width: 5px; height: 5px; background: var(--brand-light); border-radius: 50%;
 }
 
-/* namig za drsenje */
 .scroll-hint {
   position: absolute; left: 50%; bottom: 26px; z-index: 3;
   transform: translateX(-50%);
@@ -468,10 +427,6 @@ body.nav-open { overflow: hidden; }
   0%, 100% { transform: scaleY(.35); opacity: .35; transform-origin: top; }
   50%      { transform: scaleY(1);   opacity: 1;   transform-origin: top; }
 }
-
-/* =====================================================================
-   6. FOTOGRAFIJE  (okvir + nadomestek, dokler slik še ni)
-   ===================================================================== */
 
 .photo {
   position: relative;
@@ -509,7 +464,6 @@ body.nav-open { overflow: hidden; }
 .photo--square   { aspect-ratio: 1 / 1; }
 .photo--wide     { aspect-ratio: 16 / 10; }
 
-/* okrasni okvir okoli glavne fotografije */
 .photo-frame { position: relative; }
 .photo-frame::before {
   content: ""; position: absolute; z-index: 0;
@@ -521,7 +475,6 @@ body.nav-open { overflow: hidden; }
 .photo-frame:hover::before { inset: 18px -18px -18px 18px; }
 .photo-frame .photo { position: relative; z-index: 1; }
 
-/* plavajoča značka čez fotografijo */
 .photo-badge {
   position: absolute; z-index: 2; right: -22px; bottom: 34px;
   background: var(--brand); color: #fff;
@@ -538,10 +491,6 @@ body.nav-open { overflow: hidden; }
   opacity: .92;
 }
 @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
-/* =====================================================================
-   7. TEKOČI NAPIS (marquee)
-   ===================================================================== */
 
 .marquee {
   overflow: hidden;
@@ -563,10 +512,6 @@ body.nav-open { overflow: hidden; }
   content: ""; width: 7px; height: 7px; background: var(--sand); border-radius: 50%;
 }
 @keyframes slide { to { transform: translateX(-50%); } }
-
-/* =====================================================================
-   8. STORITVE – oštevilčene kartice
-   ===================================================================== */
 
 .grid { display: grid; gap: clamp(20px, 2.4vw, 34px); }
 .grid--2 { grid-template-columns: repeat(2, 1fr); }
@@ -621,7 +566,6 @@ body.nav-open { overflow: hidden; }
 .section--dark .svc p, .svc--dark p { color: var(--muted-on-dark); }
 .section--dark .svc h3, .svc--dark h3 { color: #fff; }
 
-/* seznam s kljukicami */
 .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .ticks li { display: flex; gap: 14px; align-items: flex-start; }
 .ticks li::before {
@@ -631,7 +575,6 @@ body.nav-open { overflow: hidden; }
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
 }
 
-/* cenik / postavka storitve */
 .price-list { list-style: none; margin: 0; padding: 0; }
 .price-list li {
   display: flex; align-items: baseline; gap: 16px;
@@ -649,7 +592,6 @@ body.nav-open { overflow: hidden; }
 }
 .section--dark .price-list em { color: var(--brand-light); }
 
-/* --- cenik: prava številčna cena namesto »po dogovoru« --- */
 .price-list--cenik li { padding: 12px 0; gap: 12px; }
 .price-list--cenik li:last-child { border-bottom: none; }
 .price-list--cenik b { font-weight: 500; }
@@ -664,7 +606,6 @@ body.nav-open { overflow: hidden; }
 }
 .section--dark .price-list--cenik .dur { color: var(--muted-on-dark); }
 
-/* skupine cenika */
 .cenik-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(30px, 3.4vw, 56px); }
 .cenik-group { min-width: 0; }
 .cenik-group > h3 {
@@ -680,7 +621,6 @@ body.nav-open { overflow: hidden; }
 }
 .section--dark .cenik-foot { border-top-color: var(--line-dark); }
 
-/* števci */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .stat { text-align: center; padding: 26px 10px; }
 .stat b {
@@ -695,7 +635,6 @@ body.nav-open { overflow: hidden; }
 }
 .section--light .stat span, .section--light2 .stat span { color: var(--muted-on-light); }
 
-/* citat */
 .quote {
   position: relative;
   font-family: var(--font-title); font-style: italic;
@@ -710,14 +649,9 @@ body.nav-open { overflow: hidden; }
   color: var(--brand);
 }
 
-/* =====================================================================
-   9. CTA PAS
-   ===================================================================== */
-
 .cta {
   position: relative;
-  overflow-x: clip;   /* navpično vidno, da krog v naslovu ni odsekan */
-  overflow-y: visible;
+  overflow-x: clip;  overflow-y: visible;
   background: var(--brand-deep);
   padding-block: clamp(60px, 7vw, 110px);
 }
@@ -731,10 +665,6 @@ body.nav-open { overflow: hidden; }
   gap: 30px;
 }
 .cta h2 { margin-bottom: 0; max-width: 760px; }
-
-/* =====================================================================
-   10. KONTAKT / ZEMLJEVID
-   ===================================================================== */
 
 .info-card {
   padding: clamp(28px, 3vw, 44px);
@@ -777,7 +707,45 @@ body.nav-open { overflow: hidden; }
 .map:hover { filter: none; }
 .map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-/* družbena omrežja */
+.map:has(.map__gate) { filter: none; }
+.map__gate {
+  height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  gap: 16px; padding: clamp(24px, 5vw, 48px);
+  background: var(--ink-3);
+}
+.map__title {
+  margin: 0; font-family: var(--font-title);
+  font-size: clamp(22px, 2.4vw, 32px); color: var(--white);
+}
+.map__text {
+  margin: 0; max-width: 52ch;
+  font-size: 15px; color: var(--muted-on-dark);
+}
+.map__alt { margin: 0; font-size: 13px; color: var(--muted-on-dark); }
+
+.legal { color: var(--muted-on-light); }
+.legal h2 {
+  font-size: clamp(24px, 2.2vw, 34px);
+  margin-top: clamp(38px, 4vw, 58px); margin-bottom: .5em;
+  text-transform: none;
+}
+.legal h2:first-child { margin-top: 0; }
+.legal p { margin-bottom: 20px; }
+.legal ul {
+  margin: 0 0 22px; padding-left: 1.3em;
+}
+.legal li { margin-bottom: 10px; }
+.legal strong { color: var(--text-on-light); }
+.legal a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.legal a:hover { color: var(--brand-dark); }
+.legal__updated {
+  margin-top: clamp(38px, 4vw, 58px); padding-top: 22px;
+  border-top: 1px dashed var(--line-light);
+  font-size: 14px;
+}
+
 .socials { display: flex; gap: 12px; flex-wrap: wrap; }
 .socials a {
   width: 48px; height: 48px;
@@ -794,10 +762,6 @@ body.nav-open { overflow: hidden; }
 .section--light .socials a, .section--light2 .socials a {
   border-color: var(--line-light); color: var(--text-on-light);
 }
-
-/* =====================================================================
-   11. NOGA
-   ===================================================================== */
 
 .site-footer { background: var(--ink); padding-top: clamp(60px, 7vw, 100px); }
 .site-footer .grid { align-items: start; }
@@ -821,7 +785,6 @@ body.nav-open { overflow: hidden; }
   font-size: 13px; color: var(--muted-on-dark);
 }
 
-/* gumb "na vrh" */
 .to-top {
   position: fixed; right: 26px; bottom: 26px; z-index: 90;
   width: 50px; height: 50px;
@@ -836,10 +799,6 @@ body.nav-open { overflow: hidden; }
 .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
 .to-top:hover { background: var(--brand-dark); }
 .to-top svg { animation: bob 2.6s ease-in-out infinite; }
-
-/* =====================================================================
-   12. ANIMACIJE OB DRSENJU
-   ===================================================================== */
 
 [data-reveal] {
   opacity: 0;
@@ -861,7 +820,6 @@ body.nav-open { overflow: hidden; }
   clip-path: inset(0 0 0 0);
 }
 
-/* ob nalaganju strani (junak) */
 .load-in { opacity: 0; transform: translateY(28px); }
 .is-loaded .load-in { animation: load-up 1s var(--ease-out) both; }
 .is-loaded .load-in:nth-of-type(1) { animation-delay: .15s; }
@@ -874,10 +832,6 @@ body.nav-open { overflow: hidden; }
 .d5 { animation-delay: .58s !important; }
 .d6 { animation-delay: .70s !important; }
 
-/* =====================================================================
-   13. ODZIVNOST
-   ===================================================================== */
-
 @media (max-width: 1100px) {
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
   .grid--3 { grid-template-columns: repeat(2, 1fr); }
@@ -889,7 +843,7 @@ body.nav-open { overflow: hidden; }
 @media (max-width: 900px) {
   :root { --header-h: 74px; }
   .nav, .header-phone { display: none; }
-  .burger { display: flex; }
+  .burger { display: inline-flex; }
   .split, .grid--2 { grid-template-columns: 1fr; }
   .cenik-grid { grid-template-columns: 1fr; }
   .split--reverse .split__media { order: 0; }
@@ -898,18 +852,14 @@ body.nav-open { overflow: hidden; }
 }
 
 @media (max-width: 640px) {
+  .header-actions > .btn { display: none; }
   .grid--3, .grid--4 { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; gap: 0; }
   .stat { border-bottom: 1px solid var(--line-dark); }
   .photo-frame::before { display: none; }
   .photo-badge { position: static; margin-top: 18px; max-width: none; animation: none; }
   .cta .container { flex-direction: column; align-items: flex-start; }
-  .mobile-nav a { font-size: 30px; }
 }
-
-/* =====================================================================
-   14. TISK IN ZMANJŠANO GIBANJE
-   ===================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

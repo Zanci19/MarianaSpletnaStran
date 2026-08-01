@@ -1,25 +1,12 @@
-/* =====================================================================
-   SVETLANA — frizerski salon
-   Animacije in interakcija. Brez zunanjih knjižnic.
-   ===================================================================== */
-
 (function () {
   'use strict';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------------
-     1. Animacija ob nalaganju strani
-     --------------------------------------------------------------- */
   window.addEventListener('DOMContentLoaded', function () {
     document.documentElement.classList.add('is-loaded');
   });
 
-  /* ---------------------------------------------------------------
-     2. Razkrivanje elementov ob drsenju (IntersectionObserver)
-        Uporaba v HTML:  data-reveal  |  data-reveal="left|right|zoom|mask"
-        Zamik:           data-delay="200"   (v milisekundah)
-     --------------------------------------------------------------- */
   var revealables = document.querySelectorAll('[data-reveal]');
 
   if (reduced || !('IntersectionObserver' in window)) {
@@ -39,10 +26,6 @@
     revealables.forEach(function (el) { revealObserver.observe(el); });
   }
 
-  /* ---------------------------------------------------------------
-     3. Samodejni zamik za otroke v mreži (učinek "stopnice")
-        Na starša dodajte  data-stagger="120"
-     --------------------------------------------------------------- */
   document.querySelectorAll('[data-stagger]').forEach(function (parent) {
     var step = parseInt(parent.getAttribute('data-stagger'), 10) || 120;
     Array.prototype.forEach.call(parent.children, function (child, i) {
@@ -52,14 +35,8 @@
     });
   });
 
-  /* ---------------------------------------------------------------
-     4. Obkroženi del naslova — ročno narisan krog
-        Nariše se, ko pride v pogled, in se ponovi vsakih 8 sekund.
-     --------------------------------------------------------------- */
   var marks = document.querySelectorAll('.mark');
 
-  /* Vsakemu krogu dam rahlo drugačen videz (naklon, raztezek, občasno
-     zrcaljenje in hitrost risanja), da nobena dva nista povsem enaka. */
   marks.forEach(function (mark) {
     var svg = mark.querySelector('svg');
     if (!svg) return;
@@ -80,17 +57,13 @@
     var markObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-drawn');   /* nariše se samo enkrat */
-        markObserver.unobserve(entry.target);
+        entry.target.classList.add('is-drawn');        markObserver.unobserve(entry.target);
       });
     }, { threshold: 0.6 });
 
     marks.forEach(function (m) { markObserver.observe(m); });
   }
 
-  /* ---------------------------------------------------------------
-     5. Glava: pomanjšanje ob drsenju + vrstica napredka
-     --------------------------------------------------------------- */
   var header = document.querySelector('.site-header');
   var progress = document.querySelector('.progress');
   var toTop = document.querySelector('.to-top');
@@ -107,7 +80,6 @@
       progress.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
     }
 
-    /* rahel paralaks na fotografiji v junaku */
     if (!reduced) {
       document.querySelectorAll('[data-parallax]').forEach(function (el) {
         var speed = parseFloat(el.getAttribute('data-parallax')) || 0.08;
@@ -122,25 +94,24 @@
   }, { passive: true });
   onScroll();
 
-  /* ---------------------------------------------------------------
-     6. Mobilni meni
-     --------------------------------------------------------------- */
   var burger = document.querySelector('.burger');
   var mobileNav = document.querySelector('.mobile-nav');
 
-  function closeNav() {
+  var burgerLabel = burger ? burger.querySelector('.burger__label') : null;
+
+  function setNav(open) {
     if (!burger || !mobileNav) return;
-    burger.setAttribute('aria-expanded', 'false');
-    mobileNav.classList.remove('is-open');
-    document.body.classList.remove('nav-open');
+    burger.setAttribute('aria-expanded', String(open));
+    mobileNav.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+    if (burgerLabel) burgerLabel.textContent = open ? 'Zapri' : 'Meni';
   }
+
+  function closeNav() { setNav(false); }
 
   if (burger && mobileNav) {
     burger.addEventListener('click', function () {
-      var open = burger.getAttribute('aria-expanded') === 'true';
-      burger.setAttribute('aria-expanded', String(!open));
-      mobileNav.classList.toggle('is-open', !open);
-      document.body.classList.toggle('nav-open', !open);
+      setNav(burger.getAttribute('aria-expanded') !== 'true');
     });
     mobileNav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeNav);
@@ -150,18 +121,12 @@
     });
   }
 
-  /* ---------------------------------------------------------------
-     7. Gumb "na vrh"
-     --------------------------------------------------------------- */
   if (toTop) {
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
     });
   }
 
-  /* ---------------------------------------------------------------
-     8. Števci (data-count="15")
-     --------------------------------------------------------------- */
   var counters = document.querySelectorAll('[data-count]');
   if (counters.length && 'IntersectionObserver' in window) {
     var countObserver = new IntersectionObserver(function (entries) {
@@ -187,10 +152,6 @@
     counters.forEach(function (el) { countObserver.observe(el); });
   }
 
-  /* ---------------------------------------------------------------
-     9. Nadomestek za fotografije, ki jih (še) ni
-        Ko datoteke naložite v mapo /slike, nadomestek sam izgine.
-     --------------------------------------------------------------- */
   document.querySelectorAll('.photo img').forEach(function (img) {
     function markEmpty() {
       var box = img.closest('.photo');
@@ -199,5 +160,19 @@
     img.addEventListener('error', markEmpty);
     if (img.complete && img.naturalWidth === 0) markEmpty();
   });
+
+  var mapBtn = document.getElementById('zemljevid-prikazi');
+  if (mapBtn) {
+    mapBtn.addEventListener('click', function () {
+      var gate = document.getElementById('zemljevid-gate');
+      var frame = document.createElement('iframe');
+      frame.title = 'Cesta Ste Marie aux Mines 36, 4290 Tržič';
+      frame.src = mapBtn.getAttribute('data-src');
+      frame.loading = 'lazy';
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      gate.replaceWith(frame);
+      frame.focus();
+    });
+  }
 
 })();

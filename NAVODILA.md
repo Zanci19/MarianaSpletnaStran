@@ -30,17 +30,15 @@ so relativne, zato delujejo tako lokalno kot na strežniku.
 
 | Kaj | Kje | Opomba |
 |---|---|---|
-| **Boljše fotografije** | mapa `slike/` | trenutne so začasne (nizka kvaliteta) – nove le shranite z istim imenom, glej `slike/PREBERI-ME.txt` |
 | **Facebook, Telegram, TikTok** | v vseh 4 HTML datotekah | poiščite `href="#"` pri `class="socials"` in vstavite prave naslove |
 | **Delovni čas** | noga vsake strani + `kontakt.html` | zdaj piše »po dogovoru« |
-| **Cene** | `storitve.html` | zdaj piše »po dogovoru« |
 | **Davčna in matična številka** | noga (neobvezno) | dodajte, če želite |
 | **Besedila** | vse strani | napisana so kot predlog — Mariana naj jih pregleda in popravi po svoje |
 
-> **Slike so že vstavljene** (začasne, nizke kvalitete). Ko dobite boljše,
-> jih shranite z istimi imeni in prepišejo obstoječe. Slika striženja je
-> trenutno `strizenje.gif` — če boste poslali `.jpg`, v `storitve.html`
-> popravite `slike/strizenje.gif` v `slike/strizenje.jpg`.
+> **Slike in cenik so urejeni.** V mapi `slike/` so prave fotografije iz
+> salona, pripravljene za splet; izvirniki v polni ločljivosti so v
+> `slike/izvirniki/` in se ne objavijo. Seznam vseh slik je v
+> `slike/PREBERI-ME.txt`. Cene so vpisane v `storitve.html` (razdelek Cenik).
 >
 > **Zemljevid** na strani Domov in Kontakt že kaže pravo lokacijo salona,
 > gumb »Odpri v zemljevidu« pa vodi na vašo Google Maps povezavo.
