@@ -444,6 +444,16 @@ body.nav-open { overflow: hidden; }
 }
 .photo:hover img { transform: scale(1.05); }
 
+.slideshow .slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease), transform 1.2s var(--ease-out);
+}
+.slideshow .slide.is-active { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .slideshow .slide { transition: none; }
+}
+
 .photo__hint {
   position: absolute; inset: 0;
   display: none;

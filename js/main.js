@@ -155,10 +155,39 @@
   document.querySelectorAll('.photo img').forEach(function (img) {
     function markEmpty() {
       var box = img.closest('.photo');
-      if (box) box.classList.add('is-empty');
+      if (!box) return;
+      if (box.hasAttribute('data-slideshow') && img !== box.querySelector('.slide')) return;
+      box.classList.add('is-empty');
     }
     img.addEventListener('error', markEmpty);
     if (img.complete && img.naturalWidth === 0) markEmpty();
+  });
+
+  document.querySelectorAll('[data-slideshow]').forEach(function (box) {
+    var slides = box.querySelectorAll('.slide');
+    if (slides.length < 2) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches) return;
+
+    var i = 0, timer = null;
+
+    function show(n) {
+      slides[i].classList.remove('is-active');
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('is-active');
+    }
+    function start() {
+      if (!timer) timer = setInterval(function () { show(i + 1); }, 5000);
+    }
+    function stop() {
+      clearInterval(timer); timer = null;
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+    reduce.addEventListener('change', function (e) { if (e.matches) stop(); else start(); });
+    start();
   });
 
   var mapBtn = document.getElementById('zemljevid-prikazi');
